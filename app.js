@@ -31,6 +31,7 @@ app.set('views', path.join(__dirname, 'resources\\views'));
 
 const homeRouter =require('./router/homeRouter');
 app.use('/',homeRouter);
+app.use('/:slug',homeRouter)
 
 
 // app.get('/',(req,res)=>{
@@ -44,11 +45,11 @@ app.use('/',homeRouter);
 //     console.log(req.body.bkav);
 // });
 
-// app.get('/search',(req,res)=>{
-//     res.render('search')
-// });
+app.get('/search',(req,res)=>{
+    res.render('search')
+});
 
-
+//connect to DB
 const db =require('./config/db');
 db.connect();
 
