@@ -7,7 +7,7 @@ module.exports={
         try {
             const showSlug= await Course.findOne({slug: req.params.slug});
            const show= showSlug ? showSlug.toObject() : showSlug; // nếu có trả về mảng object nếu không trả về showSlug theo json
-    
+            
             res.render('courses/show',{show});
           
         } catch (error) {
@@ -37,6 +37,27 @@ module.exports={
             
         } catch (error) {
             res.json({message: error})
+        }
+    },
+    edit: async (req,res,next)=>{
+        try {
+            const DataEdit=await Course.findById(req.params.id);
+            const show= DataEdit ? DataEdit.toObject() : DataEdit; // nếu có trả về mảng object nếu không trả về showSlug theo json
+            res.render('courses/edit',{show});
+            console.log(show);
+           
+        } catch (error) {
+            res.json({message: error});
+        }
+    },
+    update: async (req,res,next)=>{
+        try {
+            Course.updateOne({_id: req.params.id},req.body)
+            .then(()=> res.redirect('/me/stored/courses'))// trar ve header qua responst trinh duyet tu hieu vao diau huong
+            .catch(next)
+
+        } catch (error) {
+            res.json({message : error})
         }
     }
 }

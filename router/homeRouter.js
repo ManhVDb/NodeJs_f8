@@ -10,7 +10,9 @@ const courseController= require('../controller/courseController');
 router.get('/',homeController.getHome);
 router.get('/create',courseController.create);
 router.post('/store',courseController.store);
-router.get('/:slug',courseController.slugShow);
 
+router.get('/:id/edit',courseController.edit);
+router.put('/:id',courseController.update);
+router.get('/:slug',courseController.slugShow);
 
 module.exports=router;

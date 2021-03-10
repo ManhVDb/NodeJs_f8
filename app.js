@@ -3,6 +3,7 @@ const morgan= require('morgan');
 const path= require('path')
 const handlebars= require('express-handlebars');
 const mongoose= require('mongoose');
+methodOverride = require('method-override')
 const app= express();
 
 //lấy được dữ liệu từ body
@@ -10,6 +11,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(express.json());
+app.use(methodOverride('_method'))
 
 
 //static file
@@ -21,8 +23,12 @@ console.log(__dirname);
 
 //Template engine
 app.engine('hbs', handlebars({
-    extname: '.hbs' //config lại handlebars
-}));
+    extname: '.hbs', //config lại handlebars
+    helpers:{
+        sum:(a,b)=> a+b,
+    }
+})
+);
 
 
 app.set('view engine', 'hbs');
@@ -30,8 +36,10 @@ app.set('views', path.join(__dirname, 'resources\\views'));
 
 
 const homeRouter =require('./router/homeRouter');
+const meRouter =require('./router/me');
 app.use('/',homeRouter);
-app.use('/:slug',homeRouter)
+app.use('/:slug',homeRouter);
+app.use('/me',meRouter);
 
 
 // app.get('/',(req,res)=>{
@@ -53,4 +61,4 @@ app.get('/search',(req,res)=>{
 const db =require('./config/db');
 db.connect();
 
-app.listen(8000);
+app.listen(3000);

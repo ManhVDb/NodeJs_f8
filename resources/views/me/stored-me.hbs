@@ -1,0 +1,50 @@
+<div class="mt4">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Tên Khóa Học</th>
+      <th scope="col">Ngôn Ngữ</th>
+      <th scope="col">Thời Gian Tạo</th>
+      <th scope="col">Tùy Chọn</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      {{#each me}}
+      <tr>
+      <th scope="row">{{sum @index 1}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.slug}}</td>
+      <td>{{this.createdAt}}</td>
+      <td>
+        <a href="/courses/{{this._id}}/edit" class="btn btn-outline-dark">Update</button>
+        <a href="#" class="btn btn-outline-dark" data-toggle="modal" data-target="#delete-course">Delete</button>
+      </td>
+      </tr>
+      {{/each}}
+  </tbody>
+</table>
+</div>
+
+{{!-- Confirm delete course --}}
+<div class="modal fade" id="delete-course" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete it?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Delete</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
