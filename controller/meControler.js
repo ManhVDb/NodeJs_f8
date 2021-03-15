@@ -1,5 +1,5 @@
 const Course =require('../models/Course');
-const mongoose = require('mongoose');
+
 
 module.exports={
     meCourese: async (req,res)=>{

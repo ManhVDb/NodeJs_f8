@@ -40,6 +40,7 @@ const meRouter =require('./router/me');
 app.use('/',homeRouter);
 app.use('/:slug',homeRouter);
 app.use('/me',meRouter);
+app.use('/course',homeRouter);
 
 
 // app.get('/',(req,res)=>{

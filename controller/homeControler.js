@@ -1,6 +1,4 @@
 const Course =require('../models/Course');
-const mongoose = require('mongoose');
-
 module.exports={
     getHome: async (req,res)=>{
         try {

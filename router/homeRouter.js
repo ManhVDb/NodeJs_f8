@@ -13,6 +13,7 @@ router.post('/store',courseController.store);
 
 router.get('/:id/edit',courseController.edit);
 router.put('/:id',courseController.update);
+router.delete('/:id',courseController.deleteCourse);
 router.get('/:slug',courseController.slugShow);
 
 module.exports=router;

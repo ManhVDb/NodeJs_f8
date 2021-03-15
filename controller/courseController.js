@@ -6,7 +6,7 @@ module.exports={
     slugShow: async (req,res,next)=>{
         try {
             const showSlug= await Course.findOne({slug: req.params.slug});
-           const show= showSlug ? showSlug.toObject() : showSlug; // nếu có trả về mảng object nếu không trả về showSlug theo json
+            const show= showSlug ? showSlug.toObject() : showSlug; // nếu có trả về mảng object nếu không trả về showSlug theo json
             
             res.render('courses/show',{show});
           
@@ -44,8 +44,7 @@ module.exports={
             const DataEdit=await Course.findById(req.params.id);
             const show= DataEdit ? DataEdit.toObject() : DataEdit; // nếu có trả về mảng object nếu không trả về showSlug theo json
             res.render('courses/edit',{show});
-            console.log(show);
-           
+            
         } catch (error) {
             res.json({message: error});
         }
@@ -58,6 +57,14 @@ module.exports={
 
         } catch (error) {
             res.json({message : error})
+        }
+    },
+    deleteCourse: async (req,res,next) =>{
+        try {
+             Course.deleteOne({_id: req.params.id})
+             .then(() => res.redirect('back'))
+        } catch (error) {
+            res.json({message : error})            
         }
     }
 }
